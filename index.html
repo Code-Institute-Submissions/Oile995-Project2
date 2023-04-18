@@ -8,6 +8,11 @@
     <title>Ultimate VideoGame Quiz</title>
 </head>
 <body>
+
+    <!-- Header title-->
+    <header class="center">
+        <h1>The Ultimate Video-Game Quiz!</h1>
+    </header>
     <!-- Home hero image section-->
     <section id="herobanner">
         <div id="hero-image" >
@@ -19,20 +24,24 @@
     <!-- Quiz section-->
     <section id="quiz-section">
         <div class="difficulty-container">
-            <div class="difficulty-easy">
+            <div id="difficulty-easy" onclick="startGame();">
                 <h1>Easy!</h1>
                 <h3>Questions</h3>
                 <p>Answer was wrong</p>
             </div>
-            <div class="difficulty-medium">
+            <div id="difficulty-medium" onclick="startGame();">
                 <h1>Medium!</h1>
                 <h3>Questions</h3>
                 <p>Answer was wrong</p>
             </div>
-            <div class="difficulty-hard">
+            <div id="difficulty-hard" onclick="startGame();">
                 <h1>Hard!</h1>
                 <h3>Questions</h3>
                 <p>Answer was wrong</p>
+            </div>
+
+            <div id="game-container" class="hide">
+                <h1> You did it!</h1>
             </div>
         </div>
     </section>
