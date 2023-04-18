@@ -1,17 +1,14 @@
 const startEasy = document.getElementById("difficulty-easy");
 const startMedium = document.getElementById("difficulty-medium");
 const startHard = document.getElementById("difficulty-hard");
-const hero = document.getElementById("hero-image");
+const hero = document.getElementById("hero-section");
 const gameContainer = document.getElementById("game-container");
 startEasy.addEventListener("click", startGame, false);
 startMedium.addEventListener("click", startGame, false);
 startHard.addEventListener("click", startGame, false);
 
 function startGame(event){
-    startEasy.style.display = "none";
-    startMedium.style.display = "none";
-    startHard.style.display = "none";
-    hero.style.display = "none";
+    hero.classList.add("hide");
     gameContainer.classList.remove("hide")
 }
 
