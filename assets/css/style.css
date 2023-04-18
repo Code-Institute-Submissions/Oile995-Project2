@@ -103,6 +103,19 @@ header{
     margin-right:auto;
     margin-left:auto;
 }
+.question-image{
+    height: 20vw;
+    object-fit: contain;
+
+}
+.button{
+    
+}
+.button-grid{
+    display:grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 2px;
+}
 #game-container{
     background-color: aqua;
     width: 100vw;

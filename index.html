@@ -14,22 +14,22 @@
         <h1>The Ultimate Video-Game Quiz!</h1>
     </header>
     <!-- Home hero image section-->
-    <section id="hero-section">
+    <section id="hero-section" >
         <div id="hero-image" >
             <img src="assets/images/quiz-home.png" style="max-width: 100%; height: auto;" alt="Famous game characters from World of Warcraft to Super Mario in retro game border and background">
 
             <div class="difficulty-container">
-                <div id="difficulty-easy" onclick="startGame();">
+                <div id="difficulty-easy" >
                     <h1>Easy!</h1>
                     <h3>Questions</h3>
                     <p>Answer was wrong</p>
                 </div>
-                <div id="difficulty-medium" onclick="startGame();">
+                <div id="difficulty-medium" >
                     <h1>Medium!</h1>
                     <h3>Questions</h3>
                     <p>Answer was wrong</p>
                 </div>
-                <div id="difficulty-hard" onclick="startGame();">
+                <div id="difficulty-hard" >
                     <h1>Hard!</h1>
                     <h3>Questions</h3>
                     <p>Answer was wrong</p>
@@ -42,9 +42,15 @@
     <br>
 
     <!-- Quiz section-->
-    <section id="quiz-section">
-        <div id="game-container" class="hide">
-            <h1> You did it!</h1>
+    <section id="quiz-section" class="hide">
+        <div id="game-container" class="button-grid" >
+            <div id="question-image" class="question-image"></div>
+            <div id="question">Question?</div>
+            <button id="button0" class="button"> Answer 1</button>
+            <button id="button1" class="button"> Answer 2</button>
+            <button id="button2" class="button"> Answer 3</button>
+            <button id="button3" class="button"> Answer 4</button>
+
         </div>
     </section>
 
