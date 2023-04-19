@@ -32,17 +32,16 @@ function startGame(){
 // else set backgroundcolor to all buttons (does not work atm)  
 // set current question to question index in selected questions and calls show function for that question
 function setNextQuestion(){
+    clearTimeout(timeout);
     console.log("setNext Function");
-    console.log(questionIndex);
-    console.log(score);
+    console.log('questionIndex: ', questionIndex);
+    console.log('score: ',score);
     if(questionIndex == 5){
         endGame();
         //hero.classList.remove("hide");
         //quizSection.classList.add("hide")
     }
     else{
-        console.log("tries to style buttons");
-        console.log(buttons.length);
         for(let i = 0; i < buttons.length; i++){
             buttonloop = "button"+i;
             document.getElementById(buttonloop).style.backgroundColor = "lightgray";
@@ -58,6 +57,7 @@ function setNextQuestion(){
 function showQuestion(question){
     console.log("showQuestion Function");
     questionIndex++;
+    console.log('questionIndex: ', questionIndex);
     questionElement.innerHTML = question.question;
     questionImage.innerHTML = question.image;
     let answers = question.incorrect_answers;
@@ -78,10 +78,11 @@ function showQuestion(question){
         randomNum= Math.floor(Math.random() * 2);
         answers.splice(randomNum, 0, question.correct_answer);
         for(let i=0; i < 4; i++){
-            let test = "button"+i;
-            document.getElementById(test).innerHTML = answers[i];
+            buttonloop = "button"+i;
+            document.getElementById(buttonloop).innerHTML = answers[i];
             buttons[i].addEventListener("click", (event) => {
                 selectAnswer(event, question);
+                {once : true};
               });
         }
     }
@@ -106,6 +107,112 @@ function endGame(){
     finalScoreSection.classList.remove("hide");
     quizSection.classList.add("hide");
 }
+
+const difficultyEasy = [
+    {
+        "type":"multiple",
+        "question":"What year was the game Team Fortress 2 released?",
+        "correct_answer":"2007",
+        "incorrect_answers":["2009","2005","2010"]
+    },
+        
+    {
+        "type":"boolean",
+        "question":"In Kingdom Hearts the Paopu fruit is said to intertwine the destinies for two people forever.",
+        "correct_answer":"True",
+        "incorrect_answers":["False"]
+    },
+    {
+        "type":"boolean",
+        "question":"Tetris is the #1 best-selling video game of all-time.",
+        "correct_answer":"False",
+        "incorrect_answers":["True"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What&#039;s the Team Fortress 2 Scout&#039;s city of origin?",
+        "correct_answer":"Boston",
+        "incorrect_answers":["Sydney","Detroit","New York"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Who is the creator of the Super Smash Bros. Series?",
+        "correct_answer":"Masahiro Sakurai",
+        "incorrect_answers":["Reggie Fils-Aim&eacute;","Bill Trinen","Hideo Kojima"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Who is the main protagonist of Dead Space?",
+        "correct_answer":"Isaac Clarke",
+        "incorrect_answers":["Commander Shepard","Gordon Freeman","Master Chief"]
+    },
+        
+    {
+        "type":"boolean",
+        "question":"Rebecca Chambers does not appear in any Resident Evil except for the original Resident Evil and the Gamecube remake.",
+        "correct_answer":"False",
+        "incorrect_answers":["True"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Which of the following is not a faction in Tom Clancy&#039;s The Division?",
+        "correct_answer":"CDC",
+        "incorrect_answers":["Cleaners","Last Man Batallion","Rikers"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In Rust, how many Timed Explosive Charges does it take to destroy a Ladder Hatch?",
+        "correct_answer":"1",
+        "incorrect_answers":["3","2","5"]
+    },
+        
+    {
+        "type":"boolean",
+        "question":"&quot;Metal Gear Solid 3: Snake Eater&quot; was released in 2004.",
+        "correct_answer":"True",
+        "incorrect_answers":["False"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In the original Spyro game who is the first villain?",
+        "correct_answer":"Gnasty Gnorc",
+        "incorrect_answers":["Ripto","Sorceress","Cynder"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Before it&#039;s redesign of the company logo in the year 2000, which 3D shape is NOT represented in the Electronic Arts logo?",
+        "correct_answer":"Cylinder",
+        "incorrect_answers":["Pyramid","Cube","Sphere"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In the game &quot;Fire Emblem: Shadow Dragon&quot;, what is the central protagonist&#039;s name?",
+        "correct_answer":"Marth",
+        "incorrect_answers":["Roy","Eliwood","Robin"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What is the name of a popular franchise that includes placing blocks down and surviving in an open world? ",
+        "correct_answer":"Minecraft",
+        "incorrect_answers":["Unturned","Roblox","Grand Theft Auto V"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Which character was introduced to the Super Smash Bros franchise in Super Smash Bros Melee?",
+        "correct_answer":"Sheik",
+        "incorrect_answers":["Samus","Lucas","Mega Man"]
+    }
+]
 
 const questionsMedium = [
     {
@@ -225,4 +332,111 @@ const questionsMedium = [
         "correct_answer":"Heavy",
         "incorrect_answers":["Medium","Light","Light-Medium"]
     }
+]
+
+const difficultyHard = [
+    {
+        "type":"multiple",
+        "question":"When was the first Call of Duty title released?",
+        "correct_answer":"October 29, 2003",
+        "incorrect_answers":["December 1, 2003","November 14, 2002","July 18, 2004"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What was the world&#039;s first video game?",
+        "correct_answer":"Tennis for Two",
+        "incorrect_answers":["Spacewar!","Pong","Space Travel"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"According to Toby Fox, what was the method to creating the initial tune for Megalovania?",
+        "correct_answer":"Singing into a Microphone",
+        "incorrect_answers":["Playing a Piano","Using a Composer Software","Listened to birds at the park"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What&#039;s the name of the halloween-related Sims 4 Stuff Pack released September 29th, 2015?",
+        "correct_answer":"Spooky Stuff",
+        "incorrect_answers":["Ghosts n&#039; Ghouls","Nerving Nights","Fearful Frights"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In the video game &quot;Metal Gear Solid&quot;, what did Revolver Ocelot consider the greatest handgun ever made?",
+        "correct_answer":"Colt Single Action Army",
+        "incorrect_answers":["Colt Python","Colt M1892","Colt 1851 Navy Revolver"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"&quot;Gimmick!&quot; is a Japanese Famicom game that uses a sound chip expansion in the cartridge. What is it called?",
+        "correct_answer":"FME-7",
+        "incorrect_answers":["VRC7","VRC6","MMC5"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"How many aces can be shot down through the entirety of &quot;Ace Combat Zero: The Belkan War&quot;?",
+        "correct_answer":"169",
+        "incorrect_answers":["100","132","245"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Which monster in &quot;Monster Hunter Tri&quot; was causing earthquakes in Moga Village?",
+        "correct_answer":"Ceadeus",
+        "incorrect_answers":["Alatreon","Rathalos","Lagiacrus"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In &quot;Call Of Duty: Zombies&quot;, which map&#039;s opening cutscene shows &quot;Richtofen&quot; killing another version of himself?",
+        "correct_answer":"The Giant",
+        "incorrect_answers":["Shadows Of Evil","Der Eisendrache","Moon"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In Diablo lore, this lesser evil spawned from one of the seven heads of Tathamet, and was known as the Maiden of Anguish.",
+        "correct_answer":"Andariel",
+        "incorrect_answers":["Valla","Malthael","Kashya"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What is the plane of existence in MicroProse&#039;s 1997 &quot;Magic the Gathering&quot;?",
+        "correct_answer":"Shandalar",
+        "incorrect_answers":["Theros","Ravnica","Amonkhet"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"What vault in the video game &quot;Fallout 3&quot; is the home of multiple clones named Gary?",
+        "correct_answer":"Vault 108",
+        "incorrect_answers":["Vault 101","Vault 87","Vault 21"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"Which one of these is NOT an official map in Counter-Strike: Global Offensive?",
+        "correct_answer":"de_season",
+        "incorrect_answers":["de_sugarcane","de_canals","de_militia"]
+    },
+        
+    {
+        "type":"boolean",
+        "question":"In &quot;Minecraft&quot;, gold tools are faster than diamond tools.",
+        "correct_answer":"True",
+        "incorrect_answers":["False"]
+    },
+        
+    {
+        "type":"multiple",
+        "question":"In the Mario Kart series, which game introduced the &quot;Shield Drifting&quot; mechanic?",
+        "correct_answer":"Mario Kart Arcade GP DX",
+        "incorrect_answers":["Mario Kart: Double Dash","Mario Kart Super Circuit","Mario Kart DS"]
+	}
 ]
