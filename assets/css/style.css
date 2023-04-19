@@ -67,9 +67,9 @@ header{
     background-color: aqua;
     border-radius: 25px;
     text-align: center;
-    position: relative;
-    bottom: 25vw;
-    left: 12vw;
+    position: absolute;
+    bottom: 15vw;
+    left: 10vw;
 }
 #difficulty-medium{
     max-width: 20%;
@@ -78,9 +78,9 @@ header{
     background-color: aqua;
     border-radius: 25px;
     text-align: center;
-    position: relative;
-    bottom: 34.8vw;
-    left: 38vw;
+    position: absolute;
+    bottom: 15vw;
+    left: 41vw;
 }
 #difficulty-hard{
     max-width: 20%;
@@ -89,9 +89,9 @@ header{
     background-color: aqua;
     border-radius: 25px;
     text-align: center;
-    position: relative;
-    bottom: 44.6vw;
-    left: 65vw;
+    position: absolute;
+    bottom: 15vw;
+    right: 10vw;
 }
 
 #quiz-section{
@@ -164,9 +164,8 @@ header{
     }
     #difficulty-medium{
         max-width: 25%;
-
         bottom: 288px;
-        left: 45vw;
+        left: 864px;
     }
     #difficulty-hard{
         max-width: 25%;
@@ -174,11 +173,6 @@ header{
         right: 326.4px;
     }
 }
-
-
-
-
-
 
 /* Responsive layout - makes a one column layout instead of a two-column layout */
 @media (max-width: 800px) {
@@ -194,10 +188,13 @@ header{
     }
     /* move difficulty below hero image */
     .difficulty-container {
+        position:absolute;
         display: flex;
         flex-direction: column;
       }
     #difficulty-easy{
+        position:absolute;
+
         flex: 75%;
         margin: 2vw;
         background-color: aqua;

@@ -1,7 +1,8 @@
 Links to CITATIONS
 
 https://css-tricks.com/adding-stroke-to-web-text/
-
+eventlistener call function and passing argument on click
+https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
 
 
 
