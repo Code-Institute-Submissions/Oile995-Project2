@@ -125,6 +125,24 @@ header{
     box-shadow: 0 0 10px 2px;
 }
 
+#final-score-section{
+    height: auto;
+    overflow: hidden;
+    position:relative;
+    padding-top: 2vw;
+    width: 80%;
+    margin-right:auto;
+    margin-left:auto;
+}
+#score-container{
+    background-color: aqua;
+    width: 100vw;
+    max-width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
 
 
 

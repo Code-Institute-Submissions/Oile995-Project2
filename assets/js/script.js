@@ -2,59 +2,109 @@ const startEasy = document.getElementById("difficulty-easy");
 const startMedium = document.getElementById("difficulty-medium");
 const startHard = document.getElementById("difficulty-hard");
 const hero = document.getElementById("hero-section");
+const finalScoreSection = document.getElementById("final-score-section");
 const gameContainer = document.getElementById("game-container");
 const quizSection = document.getElementById("quiz-section");
+const scoreContainer = document.getElementById("final-score");
 let questionImage = document.getElementById("question-image");
 let questionElement = document.getElementById("question");
-const button = document.getElementsByClassName("button");
-
+const buttons = document.getElementsByClassName("button");
 
 startEasy.addEventListener("click", startGame, false);
 startMedium.addEventListener("click", startGame, false);
 startHard.addEventListener("click", startGame, false);
-let selectedQuestions, questionIndex, currentQuestion;
+let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score;
 
+// starts game after difficulty is set/clicked
+// hides hero section and shows quiz section
+// randomize the sorting of selected question difficulty array.
+// set questionIndex to 0 and calls setNextQuestion function
 function startGame(){
     hero.classList.add("hide");
     quizSection.classList.remove("hide")
     selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random()});
     questionIndex = 0;
+    score = 0;
     setNextQuestion();
 }
 
+// if 5 questions have been run, return to main menu (placeholder for now)
+// else set backgroundcolor to all buttons (does not work atm)  
+// set current question to question index in selected questions and calls show function for that question
 function setNextQuestion(){
-    currentQuestion = selectedQuestions[questionIndex]
-    showQuestion(currentQuestion);
-    
+    console.log("setNext Function");
+    console.log(questionIndex);
+    console.log(score);
+    if(questionIndex == 5){
+        endGame();
+        //hero.classList.remove("hide");
+        //quizSection.classList.add("hide")
+    }
+    else{
+        console.log("tries to style buttons");
+        console.log(buttons.length);
+        for(let i = 0; i < buttons.length; i++){
+            buttonloop = "button"+i;
+            document.getElementById(buttonloop).style.backgroundColor = "lightgray";
+        }
+        currentQuestion = selectedQuestions[questionIndex]
+        showQuestion(currentQuestion);
+    }
 }
 
+// add 1 to questionIndex and replace inner html of question and image placeholders
+// declare varible array for all answers initially including only incorrect ones.
+// add eventlistener for click of button and call selectAnswer function with the event and the current question object.
 function showQuestion(question){
-    randomNum= Math.floor(Math.random() * 4);
+    console.log("showQuestion Function");
+    questionIndex++;
     questionElement.innerHTML = question.question;
     questionImage.innerHTML = question.image;
     let answers = question.incorrect_answers;
-    answers.splice(randomNum, 0, question.correct_answer);
-    //if question has multiple choices, the html of Id=button0-3 will be populated with all 4 answers
+    // if question type is mutiple then generate random number from 0-3 and splice correct answer into answers in random position
     if(question.type == "multiple"){
+        randomNum= Math.floor(Math.random() * 4);
+        answers.splice(randomNum, 0, question.correct_answer);
         for(let i=0; i < 4; i++){
-            let test = "button"+i;
-            document.getElementById(test).innerHTML = answers[i];
-            button[i].addEventListener("click", (event) => {
+            buttonloop = "button"+i;
+            document.getElementById(buttonloop).innerHTML = answers[i];
+            buttons[i].addEventListener("click", (event) => {
                 selectAnswer(event, question);
               });
         }
-
+    }
+    //  else into random position of 0-1. populate innerHTML of each answer button with answers.
+    else {
+        randomNum= Math.floor(Math.random() * 2);
+        answers.splice(randomNum, 0, question.correct_answer);
+        for(let i=0; i < 4; i++){
+            let test = "button"+i;
+            document.getElementById(test).innerHTML = answers[i];
+            buttons[i].addEventListener("click", (event) => {
+                selectAnswer(event, question);
+              });
+        }
+    }
+}
+//takes click event and current question object and checks if targeted button is equal to correct_answer
+//if it is, target backgroundcolor will be set to green, otherwise red. timeout for 2 seconds before setnextquestion is called again.
+function selectAnswer (e, currentQuestion){
+    console.log("selecAnswer Function");
+    if(String(e.target.innerHTML) == currentQuestion.correct_answer){
+        document.getElementById(e.target.style.backgroundColor="green");
+        score++;
+        timeout = setTimeout(setNextQuestion, 2000);
+    }
+    else{
+        document.getElementById(e.target.style.backgroundColor="red");
+        timeout = setTimeout(setNextQuestion, 2000);
     }
 }
 
-function selectAnswer (e, currentQuestion){
-    let selectedAnswer = e.target.innerHTML;
-    console.log(selectedAnswer);
-    console.log(currentQuestion.correct_answer);
-
-    if(String(selectedAnswer) == currentQuestion.correct_answer){
-        console.log("Correct!");
-    }
+function endGame(){
+    document.getElementById("score-container").innerHTML = `Your final Score is: ${score}!`;
+    finalScoreSection.classList.remove("hide");
+    quizSection.classList.add("hide");
 }
 
 const questionsMedium = [
