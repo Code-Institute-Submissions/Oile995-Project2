@@ -48,7 +48,6 @@ let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, scor
 function startGame(e, difficulty){
     hero.classList.add("hide");
     quizSection.classList.remove("hide");
-    console.log("e.target =", difficulty);
     questionIndex = 0;
     score = 0;
     if(difficulty == "Easy"){
@@ -75,9 +74,6 @@ function startGame(e, difficulty){
 // set current question to question index in selected questions and calls show function for that question
 function setNextQuestion(){
     clearTimeout(timeout);
-    console.log("setNext Function");
-    console.log('questionIndex: ', questionIndex);
-    console.log('score: ',score);
     if(questionIndex == 7){
         endGame();
     }
@@ -96,7 +92,6 @@ function setNextQuestion(){
 // declare varible array for all answers initially including only incorrect ones.
 function showQuestion(currentQuestion){
     questionIndex++;
-    console.log('questionIndex: ', questionIndex);
     questionElement.innerHTML = currentQuestion.question;
     questionImage.innerHTML = currentQuestion.image;
     answers = currentQuestion.incorrect_answers;
@@ -133,7 +128,6 @@ function showQuestion(currentQuestion){
 // if it is, target backgroundcolor will be set to green, otherwise red. Adds to score if correct. 
 // Timeout for 1 seconds before setnextquestion is called again.
 function selectAnswer (e, currentQuestion){
-    console.log("correct answer = ", currentQuestion.correct_answer);
     if(String(e.target.innerHTML) == currentQuestion.correct_answer){
         document.getElementById(e.target.style.backgroundColor="green");
         score += 100;
@@ -153,7 +147,7 @@ function endGame(){
     if(score <= 200){
         document.getElementById("score-container").innerHTML = `
         <h1> Your final Score is: ${score}! </h1>
-        <p> Wow! Yeah, you are not that good at this.. You should consider an easier difficulty!</p>
+        <p> Wow!...  Yeah, you are not that good at this.. You should consider an easier difficulty!</p>
         `;
 
     }
@@ -188,8 +182,6 @@ function returnToMain(){
 
 // Function called once help text is clicked and toggles help div with instructons.
 function help(){
-    console.log("help was initiated");
-    console.log(helpDiv.classList.contains("hide"));
     if(helpDiv.classList.contains("hide")){
         helpDiv.classList.remove("hide");
 }

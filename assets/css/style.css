@@ -206,6 +206,9 @@ button{
     text-align: center;
     background-color: aqua;
     height: 3vw;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
 }
 
 /* Exit quiz to main menu. */
