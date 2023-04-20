@@ -10,6 +10,7 @@ const button3 = document.getElementById("button3");
 const helpText = document.getElementById("help-text");
 const helpDiv = document.getElementById("help-div");
 const toMain = document.getElementById("return-to-main");
+const exitToMain = document.getElementById("exit");
 let questionImage = document.getElementById("question-image");
 let questionElement = document.getElementById("question");
 const buttons = document.getElementsByTagName("button");
@@ -29,6 +30,7 @@ startHard.addEventListener("click", (event) => {
     startGame(event, difficulty);});
 helpText.addEventListener("click", help);
 toMain.addEventListener("click", returnToMain);
+exitToMain.addEventListener("click", returnToMain);
 let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score, answers, difficulty;
 //const easyDiffuculty = "Easy";
 //const mediumDiffuculty = "Medium";
@@ -160,6 +162,9 @@ function endGame(){
 function returnToMain(){
     finalScoreSection.classList.add("hide");
     hero.classList.remove("hide");
+    helpDiv.classList.add("hide");
+    quizSection.classList.add("hide");
+
 }
 
 function help(){
