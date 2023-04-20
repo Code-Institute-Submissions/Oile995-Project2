@@ -17,9 +17,34 @@ https://assets-prd.ignimgs.com/2022/01/21/need-for-speed-underground-2-button-cr
 https://assets1.ignimgs.com/2019/09/04/super-mario-world---button-fin-1567640652381.jpg
 https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/1280/V.jpg
 https://static-cdn.jtvnw.net/ttv-boxart/65997_IGDB-285x380.jpg
-
-
-
+https://imageio.forbes.com/blogs-images/davidthier/files/2019/09/mario-1200x797.jpg?format=jpg&width=960
+https://www.esportstales.com/team-fortress
+https://marvskun.artstation.com/projects/lV4KqY
+https://scienceline.org/2020/01/tetris/
+https://www.ign.com/articles/2018/12/06/super-smash-bros-ultimate-review
+https://www.npr.org/2023/01/26/1150931836/dead-space-review
+https://insider-gaming.com/resident-evil-4-remake-achievements/
+https://gamingtrend.com/feature/reviews/massive-improvement-tom-clancys-the-division-2-review/
+https://rust.facepunch.com/news/the-big-qol-update
+https://hitmarker.net/news/metal-gear-solid-3-remake-and-new-castlevania-rumored-to-be-revealed-at-e3-1978450
+https://www.gameinformer.com/b/news/archive/2018/04/14/see-how-insomniac-made-spyro-2-run-on-the-original-playstation-in-this-video.aspx
+https://en.wikipedia.org/wiki/Electronic_Arts
+https://www.nintendo.co.uk/Games/Nintendo-DS/Fire-Emblem-Shadow-Dragon-270825.html
+https://www.pcgamer.com/minecraft-now-has-one-unified-launcher-on-pc/
+https://www.callofduty.com/modernwarfare2
+https://www.nintendolife.com/news/2022/08/watch-how-to-get-good-at-collecting-retro-video-games-without-breaking-the-bank
+https://soundcloud.com/solunary/megalovania-sol-ver
+https://www.playstation.com/sv-se/games/the-sims-4/
+https://www.xbox.com/sv-SE/games/store/metal-gear-solid-v-the-definitive-experience/bw050bmb7fd7
+https://www.svampriket.se/2016/03/mr-gimmick/
+https://www.skywardfm.com/post/zero-profit-margins-the-high-praise-and-low-sales-of-ace-combat-zero
+https://www.nintendo.co.uk/Games/Wii/Monster-Hunter-Tri-282090.html
+https://www.gamingbible.com/news/call-of-duty-zombies-coming-back-huge-way-374859-20230113
+https://eu.shop.battle.net/en-us/product/diablo-immortal
+https://techraptor.net/tabletop/guides/magic-gathering-guide
+https://www.xbox.com/en-US/games/fallout-76
+https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/?l=swedish
+https://www.playstation.com/en-us/games/minecraft/
 
 
 Bugs:

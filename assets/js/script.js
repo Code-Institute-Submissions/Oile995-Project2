@@ -1,3 +1,5 @@
+
+// declaring variables dependent on IDs and tagNames in document.
 const startEasy = document.getElementById("difficulty-easy");
 const startMedium = document.getElementById("difficulty-medium");
 const startHard = document.getElementById("difficulty-hard");
@@ -13,11 +15,14 @@ const exitToMain = document.getElementById("exit");
 let questionImage = document.getElementById("question-image");
 let questionElement = document.getElementById("question");
 const buttons = document.getElementsByTagName("button");
+
+// add eventlistener for each button and call selectAnswer function with the event and the current question object.
 for (let button of buttons) {
     button.addEventListener("click", (event) => {
         selectAnswer(event, currentQuestion);
     });
 }
+// add eventlistener for each difficulty that calls start games and sets difficutly
 startEasy.addEventListener("click", (event) => {
     difficulty = "Easy";
     startGame(event, difficulty);});
@@ -27,18 +32,19 @@ startMedium.addEventListener("click", (event) => {
 startHard.addEventListener("click", (event) => {
     difficulty = "Hard";
     startGame(event, difficulty);});
+
+// add eventlistener for helptext toggle, and both click options to return to main menu, mid game or after
 helpText.addEventListener("click", help);
 toMain.addEventListener("click", returnToMain);
 exitToMain.addEventListener("click", returnToMain);
+
+// declaring variables used through script
 let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score, answers, difficulty;
-//const easyDiffuculty = "Easy";
-//const mediumDiffuculty = "Medium";
-//const hardDiffuculty = "Hard";
 
 // starts game after difficulty is set/clicked
 // hides hero section and shows quiz section
 // randomize the sorting of selected question difficulty array.
-// set questionIndex to 0 and calls setNextQuestion function
+// set questionIndex and score to 0 and calls setNextQuestion function
 function startGame(e, difficulty){
     hero.classList.add("hide");
     quizSection.classList.remove("hide");
@@ -46,7 +52,7 @@ function startGame(e, difficulty){
     questionIndex = 0;
     score = 0;
     if(difficulty == "Easy"){
-        selectedQuestions = questionsEasy;//.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsEasy.sort(function(){return 0.5 - Math.random()});
         setNextQuestion();
     }
     else if(difficulty == "Medium"){
@@ -63,8 +69,9 @@ function startGame(e, difficulty){
     }
 }
 
-// if 5 questions have been run, return to main menu (placeholder for now)
-// else set backgroundcolor to all buttons (does not work atm)  
+// Function sets next question
+// if 7 questions have been run, return to main menu (placeholder for now)
+// else resets backgroundcolor to all buttons 
 // set current question to question index in selected questions and calls show function for that question
 function setNextQuestion(){
     clearTimeout(timeout);
@@ -84,9 +91,9 @@ function setNextQuestion(){
     }
 }
 
+// Function shows next question
 // add 1 to questionIndex and replace inner html of question and image placeholders
 // declare varible array for all answers initially including only incorrect ones.
-// add eventlistener for click of button and call selectAnswer function with the event and the current question object.
 function showQuestion(currentQuestion){
     questionIndex++;
     console.log('questionIndex: ', questionIndex);
@@ -94,6 +101,8 @@ function showQuestion(currentQuestion){
     questionImage.innerHTML = currentQuestion.image;
     answers = currentQuestion.incorrect_answers;
     // if question type is mutiple then generate random number from 0-3 and splice correct answer into answers in random position
+    // unhide 3rd and 4th answer as this is a multi answer question
+    // replace innerHTML of all 4 buttons with all answers to the question
     if(currentQuestion.type == "multiple"){
         button2.classList.remove("hide");
         button3.classList.remove("hide");
@@ -104,7 +113,9 @@ function showQuestion(currentQuestion){
             document.getElementById(buttonloop).innerHTML = answers[i];
         }
     }
-    //  else into random position of 0-1. populate innerHTML of each answer button with answers.
+    // else into random position of 0-1. populate innerHTML of each answer button with answers.
+    // hides second 2 buttons as this is a true or false question
+    // replace innerHTML of all 2 buttons with both answers to the question
     else {
         button2.classList.add("hide");
         button3.classList.add("hide");
@@ -116,23 +127,30 @@ function showQuestion(currentQuestion){
         }
     }
 }
-//takes click event and current question object and checks if targeted button is equal to correct_answer
-//if it is, target backgroundcolor will be set to green, otherwise red. timeout for 2 seconds before setnextquestion is called again.
+
+// Function checks if click is correct, sets color of button depending if its correct and gives score if applicable before moving on.
+// takes click event and current question object and checks if targeted button is equal to correct_answer
+// if it is, target backgroundcolor will be set to green, otherwise red. Adds to score if correct. 
+// Timeout for 1 seconds before setnextquestion is called again.
 function selectAnswer (e, currentQuestion){
     console.log("correct answer = ", currentQuestion.correct_answer);
     if(String(e.target.innerHTML) == currentQuestion.correct_answer){
         document.getElementById(e.target.style.backgroundColor="green");
-        score++;
-        timeout = setTimeout(setNextQuestion, 2000);
+        score += 100;
+        timeout = setTimeout(setNextQuestion, 1000);
     }
     else{
         document.getElementById(e.target.style.backgroundColor="red");
-        timeout = setTimeout(setNextQuestion, 2000);
+        timeout = setTimeout(setNextQuestion, 1000);
     }
 }
 
+// Function gets called once the question index has reached 7
+// Score-containers innerHTML is set with "Your final Score is:" and the score
+// depending on your score, the score-container is also filled with a paragraph reflecting on the score.
+// quizSecton is hidden and score section is shown.
 function endGame(){
-    if(score <= 2){
+    if(score <= 200){
         document.getElementById("score-container").innerHTML = `
         <h1> Your final Score is: ${score}! </h1>
         <p> Wow! Yeah, you are not that good at this.. You should consider an easier difficulty!</p>
@@ -140,7 +158,7 @@ function endGame(){
 
     }
 
-    else if(score < 4){
+    else if(score < 400){
         document.getElementById("score-container").innerHTML = `
         <h1> Your final Score is: ${score}! </h1>
         <p> Okay that was not half bad!</p>
@@ -158,6 +176,8 @@ function endGame(){
     quizSection.classList.add("hide");
 }
 
+// Function gets called if return to main text is clicked
+// remove hide class of hero/home image and hide rest boxes
 function returnToMain(){
     finalScoreSection.classList.add("hide");
     hero.classList.remove("hide");
@@ -166,6 +186,7 @@ function returnToMain(){
 
 }
 
+// Function called once help text is clicked and toggles help div with instructons.
 function help(){
     console.log("help was initiated");
     console.log(helpDiv.classList.contains("hide"));
@@ -177,6 +198,8 @@ function help(){
     }
 }
 
+// Quiz questions as follows Easy, Medium, Hard
+// Each question has the following keys: Image, type, question, correct-answer, incorrect-answer
 const questionsEasy = [
     {
         "image":"<img src='assets/images/question-easy/easy-teamfortress2.jpg'style='max-width: 40vw; height: 35vw;'>",
@@ -202,7 +225,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-scout.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-scout.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What&#039;s the Team Fortress 2 Scout&#039;s city of origin?",
         "correct_answer":"Boston",
@@ -210,7 +233,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Who is the creator of the Super Smash Bros. Series?",
         "correct_answer":"Masahiro Sakurai",
@@ -218,7 +241,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-deadspace.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-deadspace.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Who is the main protagonist of Dead Space?",
         "correct_answer":"Isaac Clarke",
@@ -226,7 +249,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-residentevill.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-residentevill.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"boolean",
         "question":"Rebecca Chambers does not appear in any Resident Evil except for the original Resident Evil and the Gamecube remake.",
         "correct_answer":"False",
@@ -234,7 +257,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-tomclancy-division.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-tomclancy-division.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which of the following is not a faction in Tom Clancy&#039;s The Division?",
         "correct_answer":"CDC",
@@ -242,7 +265,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-rust.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-rust.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In Rust, how many Timed Explosive Charges does it take to destroy a Ladder Hatch?",
         "correct_answer":"1",
@@ -250,7 +273,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-metal-gear-solid.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-metal-gear-solid.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"boolean",
         "question":"&quot;Metal Gear Solid 3: Snake Eater&quot; was released in 2004.",
         "correct_answer":"True",
@@ -258,7 +281,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-spyro.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-spyro.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the original Spyro game who is the first villain?",
         "correct_answer":"Gnasty Gnorc",
@@ -266,7 +289,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-ea.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-ea.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Before it&#039;s redesign of the company logo in the year 2000, which 3D shape is NOT represented in the Electronic Arts logo?",
         "correct_answer":"Cylinder",
@@ -274,7 +297,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-fire-emblem-shadow.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-fire-emblem-shadow.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the game &quot;Fire Emblem: Shadow Dragon&quot;, what is the central protagonist&#039;s name?",
         "correct_answer":"Marth",
@@ -282,7 +305,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-minecraft.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-minecraft.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What is the name of a popular franchise that includes placing blocks down and surviving in an open world? ",
         "correct_answer":"Minecraft",
@@ -300,21 +323,21 @@ const questionsEasy = [
 
 const questionsMedium = [
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What&#039;s the famous line Vaas says in &quot;Far Cry 3&quot;?",
         "correct_answer":"Did I ever tell you the definition of Insanity?",
         "incorrect_answers":["Have I failed to entertain you?","You&#039;re my b*tch!","Maybe your best course...would be to tread lightly."]
     },
     {
-        "image":"<img src='assets/images/question-medium/medium-ffxv.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-ffxv.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What is the original name of Final Fantasy XV?",
         "correct_answer":"Final Fantasy Versus XIII",
         "incorrect_answers":["Final Fantasy: Reborn","Final Fantasy XVI","Final Fantasy XIII-3"]
     },
     {
-        "image":"<img src='assets/images/question-medium/medium-legends.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-legends.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Excluding their instructor, how many members of Class VII are there in the game &quot;Legend of Heroes: Trails of Cold Steel&quot;?",
         "correct_answer":"9",
@@ -322,7 +345,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-rollercoaster.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-rollercoaster.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"&quot;Rollercoaster Tycoon&quot; was programmed mostly entirely in...",
         "correct_answer":"x86 Assembly",
@@ -330,7 +353,7 @@ const questionsMedium = [
     },
 
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which of the following characters were considered for inclusion in Super Smash Bros. Melee?",
         "correct_answer":"Lucas",
@@ -338,7 +361,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-space-shooter.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-space-shooter.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Of the following space shooter games, which came out first?",
         "correct_answer":"Space Invaders",
@@ -346,7 +369,7 @@ const questionsMedium = [
     },
             
     {
-        "image":"<img src='assets/images/question-medium/medium-Fire_emblem_noken.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-Fire_emblem_noken.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What is the name of the 8th installment in the Fire Emblem series?",
         "correct_answer":"The Sacred Stones",
@@ -354,7 +377,7 @@ const questionsMedium = [
     },
             
     {
-        "image":"<img src='assets/images/question-medium/medium-pokemon-eevee-i32673.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-pokemon-eevee-i32673.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What is the only Generation III Pokemon whose name begins with the letter I?",
         "correct_answer":"Illumise",
@@ -362,7 +385,7 @@ const questionsMedium = [
     },
                 
     {
-        "image":"<img src='assets/images/question-medium/medium-R6S_Valk1.png'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-R6S_Valk1.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the game Tom Clancy&#039;s Rainbow 6 Siege, what organization is Valkyrie from?",
         "correct_answer":"Navy Seals",
@@ -370,7 +393,7 @@ const questionsMedium = [
     },
                     
     {
-        "image":"<img src='assets/images/question-medium/medium-need-for-speed.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-need-for-speed.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In Need for Speed: Underground, what car does Eddie drive?",
         "correct_answer":"Nissan Skyline GT-R (R34)",
@@ -378,7 +401,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-super-mario-world.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-super-mario-world.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What are tiny Thwomps called in Super Mario World?",
         "correct_answer":"Thwimps",
@@ -386,7 +409,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-gta.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-gta.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which one of the first four titles of the &quot;Grand Theft Auto&quot; franchise started the series of iconic image grid cover arts?",
         "correct_answer":"Grand Theft Auto III",
@@ -394,7 +417,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-payday.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-payday.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the co-op shooter Payday 2, which contact helps you break out Hoxton?",
         "correct_answer":"The Dentist",
@@ -402,7 +425,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which unlockable character in Super Smash Bros. For Wii U and 3DS does not have to be fought to be unlocked?",
         "correct_answer":"Mii Fighters",
@@ -410,7 +433,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the Mario Kart and Smash Bros. Games, Princess Rosalina is considered what weight class?",
         "correct_answer":"Heavy",
@@ -420,7 +443,7 @@ const questionsMedium = [
 
 const questionsHard = [
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-cod.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"When was the first Call of Duty title released?",
         "correct_answer":"October 29, 2003",
@@ -428,7 +451,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-world-first-game.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What was the world&#039;s first video game?",
         "correct_answer":"Tennis for Two",
@@ -436,7 +459,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-megalovania.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"According to Toby Fox, what was the method to creating the initial tune for Megalovania?",
         "correct_answer":"Singing into a Microphone",
@@ -444,7 +467,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-sims4.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What&#039;s the name of the halloween-related Sims 4 Stuff Pack released September 29th, 2015?",
         "correct_answer":"Spooky Stuff",
@@ -452,7 +475,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-metal-gear-solid.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the video game &quot;Metal Gear Solid&quot;, what did Revolver Ocelot consider the greatest handgun ever made?",
         "correct_answer":"Colt Single Action Army",
@@ -460,6 +483,7 @@ const questionsHard = [
     },
         
     {
+        "image":"<img src='assets/images/question-hard/hard-gimick.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"&quot;Gimmick!&quot; is a Japanese Famicom game that uses a sound chip expansion in the cartridge. What is it called?",
         "correct_answer":"FME-7",
@@ -467,7 +491,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-ace-combat-zero.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"How many aces can be shot down through the entirety of &quot;Ace Combat Zero: The Belkan War&quot;?",
         "correct_answer":"169",
@@ -475,7 +499,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-monster-hunter.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which monster in &quot;Monster Hunter Tri&quot; was causing earthquakes in Moga Village?",
         "correct_answer":"Ceadeus",
@@ -483,7 +507,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-cod-zombies.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In &quot;Call Of Duty: Zombies&quot;, which map&#039;s opening cutscene shows &quot;Richtofen&quot; killing another version of himself?",
         "correct_answer":"The Giant",
@@ -491,7 +515,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-diablo.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In Diablo lore, this lesser evil spawned from one of the seven heads of Tathamet, and was known as the Maiden of Anguish.",
         "correct_answer":"Andariel",
@@ -499,7 +523,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-magic-gathering.png'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What is the plane of existence in MicroProse&#039;s 1997 &quot;Magic the Gathering&quot;?",
         "correct_answer":"Shandalar",
@@ -507,7 +531,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-fallout.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"What vault in the video game &quot;Fallout 3&quot; is the home of multiple clones named Gary?",
         "correct_answer":"Vault 108",
@@ -515,7 +539,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-csgo.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"Which one of these is NOT an official map in Counter-Strike: Global Offensive?",
         "correct_answer":"de_season",
@@ -523,7 +547,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-easy/easy-minecraft.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"boolean",
         "question":"In &quot;Minecraft&quot;, gold tools are faster than diamond tools.",
         "correct_answer":"True",
@@ -531,7 +555,7 @@ const questionsHard = [
     },
         
     {
-        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
+        "image":"<img src='assets/images/question-hard/hard-mario-kart.jpg'style='max-width: 40vw; height: 35vw;'alt='Question related videogame image'>",
         "type":"multiple",
         "question":"In the Mario Kart series, which game introduced the &quot;Shield Drifting&quot; mechanic?",
         "correct_answer":"Mario Kart Arcade GP DX",
