@@ -14,7 +14,6 @@ body{
     background-color: #46114F;
     background-image: linear-gradient(to bottom, #46114F, #9322a7);
     background-repeat: no-repeat;
-
 }
 header{
     font-size: 2vw;
@@ -29,6 +28,22 @@ header{
        1px -1px 0 #000,
        -1px 1px 0 #000,
         1px 1px 0 #000;
+}
+button{
+    height: 3vw;
+    width: 75%;
+    margin: 0 auto;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 5%;
+    width: 100%;
+    background-color: #7A4850;
+    font-size: 0.5vw;
+
 }
 .hide{
     display:none;
@@ -95,34 +110,62 @@ header{
 }
 
 #quiz-section{
-    height: auto;
+    height: 100%;
     overflow: hidden;
     position:relative;
     padding-top: 2vw;
+    padding-bottom: 5vw;
     width: 80%;
     margin-right:auto;
     margin-left:auto;
 }
 .question-image{
-    height: 20vw;
+    width: auto;
+    height: 40vw;
     object-fit: contain;
+    margin: 0 auto;
+}
+#question{
+    text-align: center;
+}
+#help-text{
+    text-align: center;
+    font-size: 2vw;
+    padding-bottom: 2vw;
+    color: aqua;
+    -webkit-text-fill-color: aqua; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 
 }
-.button{
-    
-}
-.button-grid{
-    display:grid;
-    grid-template-rows: repeat(4, auto);
-    gap: 2px;
-}
-#game-container{
+#help-div{
+    justify-content: center;
+    text-align: center;
     background-color: aqua;
-    width: 100vw;
-    max-width: 80%;
+    max-width: 50%;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
+    margin: 0 auto;
+}
+#top-right{
+   right: 1px;
+}
+
+.button-grid{
+    display:grid;
+    grid-template-rows: repeat(4, auto);
+    gap: 1vw;
+}
+#game-container{
+    background-color: aqua;
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    margin: 0 auto;
+
 }
 
 #final-score-section{
@@ -131,8 +174,8 @@ header{
     position:relative;
     padding-top: 2vw;
     width: 80%;
-    margin-right:auto;
-    margin-left:auto;
+    margin: 0 auto;
+
 }
 #score-container{
     background-color: aqua;
@@ -141,6 +184,17 @@ header{
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
+    text-align: center;
+    margin: 0 auto;
+
+}
+
+#return-to-main{
+    margin: 0 auto;
+    margin-top: 5vw;
+    text-align: center;
+    background-color: aqua;
+    height: 3vw;
 }
 
 
@@ -212,6 +266,20 @@ header{
         margin: 2vw;
         background-color: aqua;
         border-radius: 25px;
+    }
+    button{
+        height: 10vw;
+    }
+
+    #help-div{
+        text-align: center;
+        font-size: 4vw;
+        padding-bottom: 2vw;
+        color: black;
+        -webkit-text-fill-color: black;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: aqua;
+    
     }
 
   }

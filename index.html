@@ -24,13 +24,9 @@
                 </div>
                 <div id="difficulty-medium" class="medium" >
                     <h1>Medium!</h1>
-                    <h3>Questions</h3>
-                    <p>Answer was wrong</p>
                 </div>
                 <div id="difficulty-hard" >
                     <h1>Hard!</h1>
-                    <h3>Questions</h3>
-                    <p>Answer was wrong</p>
                 </div>
     
                
@@ -41,6 +37,11 @@
 
     <!-- Quiz section-->
     <section id="quiz-section" class="hide">
+        <div id="help-text"> <h1> Click me to toggle game-instructions!</h1></p></div>
+        <div id="help-div" class="hide">
+            <p>Read the question and select the correct answer, there can only be one correct answer!</p>
+            <p>You can only guess once and only a correct answer gives score!</p>
+        </div>
         <div id="game-container" class="button-grid" >
             <div id="question-image" class="question-image"></div>
             <div id="question">Question?</div>
@@ -49,12 +50,16 @@
             <button id="button2" class="button"> Answer 3</button>
             <button id="button3" class="button"> Answer 4</button>
         </div>
+
     </section>
         <!-- Score section-->
     <section id="final-score-section" class="hide">
         <div id="score-container">
             <h1>Your final score was:</h1>
+            <p id="score-card">That was something, do you want to try again?</p>
+            <br>
         </div>
+        <div id="return-to-main"> Click me if you would like to return to main-menu!</div>
     </section>
 
     <footer>
