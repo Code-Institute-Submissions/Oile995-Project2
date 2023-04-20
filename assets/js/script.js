@@ -4,7 +4,6 @@ const startHard = document.getElementById("difficulty-hard");
 const hero = document.getElementById("hero-section");
 const finalScoreSection = document.getElementById("final-score-section");
 const quizSection = document.getElementById("quiz-section");
-const scoreContainer = document.getElementById("final-score");
 const button2 = document.getElementById("button2");
 const button3 = document.getElementById("button3");
 const helpText = document.getElementById("help-text");
@@ -42,12 +41,12 @@ let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, scor
 // set questionIndex to 0 and calls setNextQuestion function
 function startGame(e, difficulty){
     hero.classList.add("hide");
-    quizSection.classList.remove("hide")
+    quizSection.classList.remove("hide");
     console.log("e.target =", difficulty);
     questionIndex = 0;
     score = 0;
     if(difficulty == "Easy"){
-        selectedQuestions = questionsEasy.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsEasy;//.sort(function(){return 0.5 - Math.random()});
         setNextQuestion();
     }
     else if(difficulty == "Medium"){
@@ -80,7 +79,7 @@ function setNextQuestion(){
             buttonloop = "button"+i;
             document.getElementById(buttonloop).style.backgroundColor = "lightgray";
         }
-        currentQuestion = selectedQuestions[questionIndex]
+        currentQuestion = selectedQuestions[questionIndex];
         showQuestion(currentQuestion);
     }
 }
@@ -180,7 +179,7 @@ function help(){
 
 const questionsEasy = [
     {
-        "image":"<img src='assets/images/question-easy/easy-teamfortress2.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-teamfortress2.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What year was the game Team Fortress 2 released?",
         "correct_answer":"2007",
@@ -188,14 +187,14 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-kingdom-hearts-papou.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-kingdom-hearts-papou.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"boolean",
         "question":"In Kingdom Hearts the Paopu fruit is said to intertwine the destinies for two people forever.",
         "correct_answer":"True",
         "incorrect_answers":["False"]
     },
     {
-        "image":"<img src='assets/images/question-easy/easy-tetris.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-tetris.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"boolean",
         "question":"Tetris is the #1 best-selling video game of all-time.",
         "correct_answer":"False",
@@ -203,7 +202,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-scout.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-scout.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What&#039;s the Team Fortress 2 Scout&#039;s city of origin?",
         "correct_answer":"Boston",
@@ -211,7 +210,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Who is the creator of the Super Smash Bros. Series?",
         "correct_answer":"Masahiro Sakurai",
@@ -219,7 +218,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-deadspace.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-deadspace.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Who is the main protagonist of Dead Space?",
         "correct_answer":"Isaac Clarke",
@@ -227,7 +226,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-residentevill.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-residentevill.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"boolean",
         "question":"Rebecca Chambers does not appear in any Resident Evil except for the original Resident Evil and the Gamecube remake.",
         "correct_answer":"False",
@@ -235,7 +234,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-tomclancy-division.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-tomclancy-division.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Which of the following is not a faction in Tom Clancy&#039;s The Division?",
         "correct_answer":"CDC",
@@ -243,7 +242,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-rust.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-rust.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In Rust, how many Timed Explosive Charges does it take to destroy a Ladder Hatch?",
         "correct_answer":"1",
@@ -251,7 +250,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-metal-gear-solid.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-metal-gear-solid.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"boolean",
         "question":"&quot;Metal Gear Solid 3: Snake Eater&quot; was released in 2004.",
         "correct_answer":"True",
@@ -259,7 +258,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-spyro.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-spyro.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In the original Spyro game who is the first villain?",
         "correct_answer":"Gnasty Gnorc",
@@ -267,7 +266,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-ea.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-ea.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Before it&#039;s redesign of the company logo in the year 2000, which 3D shape is NOT represented in the Electronic Arts logo?",
         "correct_answer":"Cylinder",
@@ -275,7 +274,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-fire-emblem-shadow.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-fire-emblem-shadow.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In the game &quot;Fire Emblem: Shadow Dragon&quot;, what is the central protagonist&#039;s name?",
         "correct_answer":"Marth",
@@ -283,7 +282,7 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-minecraft.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-minecraft.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What is the name of a popular franchise that includes placing blocks down and surviving in an open world? ",
         "correct_answer":"Minecraft",
@@ -291,31 +290,31 @@ const questionsEasy = [
     },
         
     {
-        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Which character was introduced to the Super Smash Bros franchise in Super Smash Bros Melee?",
         "correct_answer":"Sheik",
         "incorrect_answers":["Samus","Lucas","Mega Man"]
     }
-]
+];
 
 const questionsMedium = [
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What&#039;s the famous line Vaas says in &quot;Far Cry 3&quot;?",
         "correct_answer":"Did I ever tell you the definition of Insanity?",
         "incorrect_answers":["Have I failed to entertain you?","You&#039;re my b*tch!","Maybe your best course...would be to tread lightly."]
     },
     {
-        "image":"<img src='assets/images/question-medium/medium-ffxv.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-ffxv.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What is the original name of Final Fantasy XV?",
         "correct_answer":"Final Fantasy Versus XIII",
         "incorrect_answers":["Final Fantasy: Reborn","Final Fantasy XVI","Final Fantasy XIII-3"]
     },
     {
-        "image":"<img src='assets/images/question-medium/medium-legends.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-legends.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Excluding their instructor, how many members of Class VII are there in the game &quot;Legend of Heroes: Trails of Cold Steel&quot;?",
         "correct_answer":"9",
@@ -323,7 +322,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/medium-rollercoaster.jpg'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-rollercoaster.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"&quot;Rollercoaster Tycoon&quot; was programmed mostly entirely in...",
         "correct_answer":"x86 Assembly",
@@ -331,7 +330,7 @@ const questionsMedium = [
     },
 
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Which of the following characters were considered for inclusion in Super Smash Bros. Melee?",
         "correct_answer":"Lucas",
@@ -339,7 +338,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-space-shooter.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Of the following space shooter games, which came out first?",
         "correct_answer":"Space Invaders",
@@ -347,7 +346,7 @@ const questionsMedium = [
     },
             
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-Fire_emblem_noken.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What is the name of the 8th installment in the Fire Emblem series?",
         "correct_answer":"The Sacred Stones",
@@ -355,7 +354,7 @@ const questionsMedium = [
     },
             
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-pokemon-eevee-i32673.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What is the only Generation III Pokemon whose name begins with the letter I?",
         "correct_answer":"Illumise",
@@ -363,7 +362,7 @@ const questionsMedium = [
     },
                 
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-R6S_Valk1.png'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In the game Tom Clancy&#039;s Rainbow 6 Siege, what organization is Valkyrie from?",
         "correct_answer":"Navy Seals",
@@ -371,7 +370,7 @@ const questionsMedium = [
     },
                     
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-need-for-speed.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In Need for Speed: Underground, what car does Eddie drive?",
         "correct_answer":"Nissan Skyline GT-R (R34)",
@@ -379,7 +378,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-super-mario-world.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"What are tiny Thwomps called in Super Mario World?",
         "correct_answer":"Thwimps",
@@ -387,7 +386,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-gta.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Which one of the first four titles of the &quot;Grand Theft Auto&quot; franchise started the series of iconic image grid cover arts?",
         "correct_answer":"Grand Theft Auto III",
@@ -395,7 +394,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-medium/medium-payday.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In the co-op shooter Payday 2, which contact helps you break out Hoxton?",
         "correct_answer":"The Dentist",
@@ -403,7 +402,7 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"Which unlockable character in Super Smash Bros. For Wii U and 3DS does not have to be fought to be unlocked?",
         "correct_answer":"Mii Fighters",
@@ -411,13 +410,13 @@ const questionsMedium = [
     },
         
     {
-        "image":"<img src='assets/images/question-medium/fc3-vaas.png'style='max-width: 60vw; height: 40vw;'>",
+        "image":"<img src='assets/images/question-easy/easy-supershamshbros.jpg'style='max-width: 40vw; height: 35vw;'>",
         "type":"multiple",
         "question":"In the Mario Kart and Smash Bros. Games, Princess Rosalina is considered what weight class?",
         "correct_answer":"Heavy",
         "incorrect_answers":["Medium","Light","Light-Medium"]
     }
-]
+];
 
 const questionsHard = [
     {
@@ -538,4 +537,4 @@ const questionsHard = [
         "correct_answer":"Mario Kart Arcade GP DX",
         "incorrect_answers":["Mario Kart: Double Dash","Mario Kart Super Circuit","Mario Kart DS"]
 	}
-]
+];
