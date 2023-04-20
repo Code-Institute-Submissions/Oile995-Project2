@@ -39,7 +39,7 @@ toMain.addEventListener("click", returnToMain);
 exitToMain.addEventListener("click", returnToMain);
 
 // declaring variables used through script
-let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score, answers, difficulty;
+let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score, answers, difficulty, randomNum;
 
 // starts game after difficulty is set/clicked
 // hides hero section and shows quiz section
@@ -52,15 +52,15 @@ function startGame(e, difficulty){
     questionIndex = 0;
     score = 0;
     if(difficulty == "Easy"){
-        selectedQuestions = questionsEasy.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsEasy.sort(function(){return 0.5 - Math.random();});
         setNextQuestion();
     }
     else if(difficulty == "Medium"){
-        selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random();});
         setNextQuestion();
     }
     else if(difficulty == "Hard") {
-        selectedQuestions = questionsHard.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsHard.sort(function(){return 0.5 - Math.random();});
         setNextQuestion();
     }
     else{

@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 
+/* General styling */
+
 *{
     font-family: 'Fjalla One', sans-serif;
     margin: 0;
     padding: 0;
+}
+a{
+    text-decoration: none;
 }
 
 body{
@@ -16,6 +21,10 @@ body{
     background-repeat: no-repeat;
 }
 header{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     font-size: 2vw;
     margin-top: 1vw;
     margin-bottom: 1vw;
@@ -36,19 +45,14 @@ button{
     cursor: pointer;
 }
 
-footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 5%;
-    width: 100%;
-    background-color: #e30eff;
-    font-size: 0.5vw;
+/* Hide class added and removed to elements in javascript functions */
 
-}
 .hide{
     display:none;
 }
+
+/* Main menu Hero image section */
+
 #herobanner{
     height: auto;
     width: 100%;
@@ -63,13 +67,7 @@ footer{
     position: relative;
     object-fit: cover;
 }
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-
+/* Container for difficulty selector divs */
 .difficulty-container{
     width: 100%;
     justify-content: center;
@@ -116,6 +114,7 @@ footer{
     font-size: 2vw;
 }
 
+/* Quiz section */
 #quiz-section{
     height: 100%;
     overflow: hidden;
@@ -125,6 +124,17 @@ footer{
     width: 80%;
     margin-right:auto;
     margin-left:auto;
+}
+
+/* Quiz game container */
+#game-container{
+    background-color: aqua;
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+    margin: 0 auto;
 }
 .question-image{
     width: 80%;
@@ -136,6 +146,8 @@ footer{
 #question{
     text-align: center;
 }
+
+/* Clickable text for help window during quiz */
 #help-text{
     cursor: pointer;
     text-align: center;
@@ -145,7 +157,6 @@ footer{
     -webkit-text-fill-color: aqua; /* Will override color (regardless of order) */
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
-
 }
 #help-div{
     justify-content: center;
@@ -159,22 +170,15 @@ footer{
     font-size: 1.5vw;
 }
 
+
+/* grid class for answer buttons */
 .button-grid{
     display:grid;
     grid-template-rows: repeat(4, auto);
     gap: 1vw;
 }
-#game-container{
-    background-color: aqua;
-    max-width: 80%;
-    height: auto;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: 0 0 10px 2px;
-    margin: 0 auto;
 
-}
-
+/* Post quiz score section */
 #final-score-section{
     height: auto;
     overflow: hidden;
@@ -182,7 +186,6 @@ footer{
     padding-top: 2vw;
     width: 80%;
     margin: 0 auto;
-
 }
 #score-container{
     background-color: aqua;
@@ -193,9 +196,9 @@ footer{
     box-shadow: 0 0 10px 2px;
     text-align: center;
     margin: 0 auto;
-
 }
 
+/* Return to main menu when clicked at end of quiz */
 #return-to-main{
     cursor: pointer;
     margin: 0 auto;
@@ -205,6 +208,7 @@ footer{
     height: 3vw;
 }
 
+/* Exit quiz to main menu. */
 #exit{
     cursor: pointer;
     margin-top: 1vw;
@@ -241,7 +245,7 @@ footer{
     }
 }
 
-/* Responsive layout - makes a one column layout instead of a two-column layout */
+/* Responsive layout - changes size for windows and font + changing color for readability on smaller devices */
 @media (max-width: 800px) {
  
     #quiz-section{
@@ -253,12 +257,7 @@ footer{
         font-size: 2.5vw;
         -webkit-text-stroke: 0.2px black;
     }
-    /* move difficulty below hero image */
-    .difficulty-container {
-        position:absolute;
-        display: flex;
-        flex-direction: column;
-      }
+
     #difficulty-easy{
         position:absolute;
         font-size: 4vw;
@@ -318,5 +317,8 @@ footer{
         text-align: center;
         font-size: 2vw;
     }
-    
+    footer{
+        font-size: 3vw;
+        text-shadow: 1px 1px;
+    }
   }
