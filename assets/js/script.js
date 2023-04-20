@@ -51,7 +51,7 @@ function startGame(e, difficulty){
         setNextQuestion();
     }
     else if(difficulty == "Medium"){
-        selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random()});
+        selectedQuestions = questionsMedium;//.sort(function(){return 0.5 - Math.random()});
         setNextQuestion();
     }
     else if(difficulty == "Hard") {
@@ -72,7 +72,7 @@ function setNextQuestion(){
     console.log("setNext Function");
     console.log('questionIndex: ', questionIndex);
     console.log('score: ',score);
-    if(questionIndex == 7){
+    if(questionIndex == 15){
         endGame();
     }
     else{
