@@ -3,29 +3,58 @@ const startMedium = document.getElementById("difficulty-medium");
 const startHard = document.getElementById("difficulty-hard");
 const hero = document.getElementById("hero-section");
 const finalScoreSection = document.getElementById("final-score-section");
-const gameContainer = document.getElementById("game-container");
 const quizSection = document.getElementById("quiz-section");
 const scoreContainer = document.getElementById("final-score");
+const button2 = document.getElementById("button2");
+const button3 = document.getElementById("button3");
 let questionImage = document.getElementById("question-image");
 let questionElement = document.getElementById("question");
-const buttons = document.getElementsByClassName("button");
-
-startEasy.addEventListener("click", startGame, false);
-startMedium.addEventListener("click", startGame, false);
-startHard.addEventListener("click", startGame, false);
-let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score;
+const buttons = document.getElementsByTagName("button");
+for (let button of buttons) {
+    button.addEventListener("click", (event) => {
+        selectAnswer(event, currentQuestion);
+    });
+}
+startEasy.addEventListener("click", (event) => {
+    difficulty = "Easy";
+    startGame(event, difficulty);});
+startMedium.addEventListener("click", (event) => {
+    difficulty = "Medium";
+    startGame(event, difficulty);});
+startHard.addEventListener("click", (event) => {
+    difficulty = "Hard";
+    startGame(event, difficulty);});
+let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, score, answers, difficulty;
+//const easyDiffuculty = "Easy";
+//const mediumDiffuculty = "Medium";
+//const hardDiffuculty = "Hard";
 
 // starts game after difficulty is set/clicked
 // hides hero section and shows quiz section
 // randomize the sorting of selected question difficulty array.
 // set questionIndex to 0 and calls setNextQuestion function
-function startGame(){
+function startGame(e, difficulty){
     hero.classList.add("hide");
     quizSection.classList.remove("hide")
-    selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random()});
+    console.log("e.target =", difficulty);
     questionIndex = 0;
     score = 0;
-    setNextQuestion();
+    if(difficulty == "Easy"){
+        selectedQuestions = questionsEasy.sort(function(){return 0.5 - Math.random()});
+        setNextQuestion();
+    }
+    else if(difficulty == "Medium"){
+        selectedQuestions = questionsMedium.sort(function(){return 0.5 - Math.random()});
+        setNextQuestion();
+    }
+    else if(difficulty == "Hard") {
+        selectedQuestions = questionsHard.sort(function(){return 0.5 - Math.random()});
+        setNextQuestion();
+    }
+    else{
+        alert("ERRRORRR!!");
+
+    }
 }
 
 // if 5 questions have been run, return to main menu (placeholder for now)
@@ -38,8 +67,6 @@ function setNextQuestion(){
     console.log('score: ',score);
     if(questionIndex == 5){
         endGame();
-        //hero.classList.remove("hide");
-        //quizSection.classList.add("hide")
     }
     else{
         for(let i = 0; i < buttons.length; i++){
@@ -54,43 +81,38 @@ function setNextQuestion(){
 // add 1 to questionIndex and replace inner html of question and image placeholders
 // declare varible array for all answers initially including only incorrect ones.
 // add eventlistener for click of button and call selectAnswer function with the event and the current question object.
-function showQuestion(question){
-    console.log("showQuestion Function");
+function showQuestion(currentQuestion){
     questionIndex++;
     console.log('questionIndex: ', questionIndex);
-    questionElement.innerHTML = question.question;
-    questionImage.innerHTML = question.image;
-    let answers = question.incorrect_answers;
+    questionElement.innerHTML = currentQuestion.question;
+    questionImage.innerHTML = currentQuestion.image;
+    answers = currentQuestion.incorrect_answers;
     // if question type is mutiple then generate random number from 0-3 and splice correct answer into answers in random position
-    if(question.type == "multiple"){
+    if(currentQuestion.type == "multiple"){
+        button2.classList.remove("hide");
+        button3.classList.remove("hide");
         randomNum= Math.floor(Math.random() * 4);
-        answers.splice(randomNum, 0, question.correct_answer);
+        answers.splice(randomNum, 0, currentQuestion.correct_answer);
         for(let i=0; i < 4; i++){
             buttonloop = "button"+i;
             document.getElementById(buttonloop).innerHTML = answers[i];
-            buttons[i].addEventListener("click", (event) => {
-                selectAnswer(event, question);
-              });
         }
     }
     //  else into random position of 0-1. populate innerHTML of each answer button with answers.
     else {
+        button2.classList.add("hide");
+        button3.classList.add("hide");
         randomNum= Math.floor(Math.random() * 2);
-        answers.splice(randomNum, 0, question.correct_answer);
-        for(let i=0; i < 4; i++){
+        answers.splice(randomNum, 0, currentQuestion.correct_answer);
+        for(let i=0; i < 2; i++){
             buttonloop = "button"+i;
             document.getElementById(buttonloop).innerHTML = answers[i];
-            buttons[i].addEventListener("click", (event) => {
-                selectAnswer(event, question);
-                {once : true};
-              });
         }
     }
 }
 //takes click event and current question object and checks if targeted button is equal to correct_answer
 //if it is, target backgroundcolor will be set to green, otherwise red. timeout for 2 seconds before setnextquestion is called again.
 function selectAnswer (e, currentQuestion){
-    console.log("selecAnswer Function");
     if(String(e.target.innerHTML) == currentQuestion.correct_answer){
         document.getElementById(e.target.style.backgroundColor="green");
         score++;
@@ -108,7 +130,7 @@ function endGame(){
     quizSection.classList.add("hide");
 }
 
-const difficultyEasy = [
+const questionsEasy = [
     {
         "type":"multiple",
         "question":"What year was the game Team Fortress 2 released?",
@@ -334,8 +356,9 @@ const questionsMedium = [
     }
 ]
 
-const difficultyHard = [
+const questionsHard = [
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"When was the first Call of Duty title released?",
         "correct_answer":"October 29, 2003",
@@ -343,6 +366,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"What was the world&#039;s first video game?",
         "correct_answer":"Tennis for Two",
@@ -350,6 +374,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"According to Toby Fox, what was the method to creating the initial tune for Megalovania?",
         "correct_answer":"Singing into a Microphone",
@@ -357,6 +382,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"What&#039;s the name of the halloween-related Sims 4 Stuff Pack released September 29th, 2015?",
         "correct_answer":"Spooky Stuff",
@@ -364,6 +390,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"In the video game &quot;Metal Gear Solid&quot;, what did Revolver Ocelot consider the greatest handgun ever made?",
         "correct_answer":"Colt Single Action Army",
@@ -378,6 +405,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"How many aces can be shot down through the entirety of &quot;Ace Combat Zero: The Belkan War&quot;?",
         "correct_answer":"169",
@@ -385,6 +413,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"Which monster in &quot;Monster Hunter Tri&quot; was causing earthquakes in Moga Village?",
         "correct_answer":"Ceadeus",
@@ -392,6 +421,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"In &quot;Call Of Duty: Zombies&quot;, which map&#039;s opening cutscene shows &quot;Richtofen&quot; killing another version of himself?",
         "correct_answer":"The Giant",
@@ -399,6 +429,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"In Diablo lore, this lesser evil spawned from one of the seven heads of Tathamet, and was known as the Maiden of Anguish.",
         "correct_answer":"Andariel",
@@ -406,6 +437,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"What is the plane of existence in MicroProse&#039;s 1997 &quot;Magic the Gathering&quot;?",
         "correct_answer":"Shandalar",
@@ -413,6 +445,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"What vault in the video game &quot;Fallout 3&quot; is the home of multiple clones named Gary?",
         "correct_answer":"Vault 108",
@@ -420,6 +453,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"Which one of these is NOT an official map in Counter-Strike: Global Offensive?",
         "correct_answer":"de_season",
@@ -427,6 +461,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"boolean",
         "question":"In &quot;Minecraft&quot;, gold tools are faster than diamond tools.",
         "correct_answer":"True",
@@ -434,6 +469,7 @@ const difficultyHard = [
     },
         
     {
+        "image":"<img src='assets/images/fc3-vaas.png'style='max-width: 15vw; height: auto;'>",
         "type":"multiple",
         "question":"In the Mario Kart series, which game introduced the &quot;Shield Drifting&quot; mechanic?",
         "correct_answer":"Mario Kart Arcade GP DX",
