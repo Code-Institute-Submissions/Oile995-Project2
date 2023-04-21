@@ -1,5 +1,5 @@
 
-// declaring variables dependent on IDs and tagNames in document.
+// declaring variables for DOM elements
 const startEasy = document.getElementById("difficulty-easy");
 const startMedium = document.getElementById("difficulty-medium");
 const startHard = document.getElementById("difficulty-hard");
