@@ -228,5 +228,6 @@ Generated and modified from OpenTriviaDB
 ### KNOWN-BUGS
 
 - If you click muliple times on the answer buttons the scoreIndex and the color of the buttons get effected. Missing stop listener after first click, for future implementation.
-- Main menu got a lot of open void on devices where Width is smaller than height.
-- Score section  got a lot of open void which could be populated.
+- Main menu got a lot of open void on devices where Width is smaller than height. (This was overlooked as I wanted to focus on the Javascript functions of this project)
+- Score section  got a lot of open void which could be populated. (This was overlooked as I wanted to focus on the Javascript functions of this project)
+
