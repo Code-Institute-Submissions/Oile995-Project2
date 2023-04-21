@@ -20,11 +20,13 @@ This website allow you to answer up to 7 question at a time from a randomized li
 - Main menu image is fully responsive to width of screen and contains the difficulty selectors for starting quiz.
 - The difficulty selectors are easy to see and fully responsive.
 <br>
+
 ![Responsive difficulty selectors](documentation/images/difficulty-selectors.png)
 
 - __Quiz help section:__
 - During the quiz, there is a responsive and togglable help section above the quiz.
 <br>
+
 ![Help toggle element](documentation/images/help-section.png)
 
 - __Quiz exit early clickable element:__
@@ -36,6 +38,7 @@ This website allow you to answer up to 7 question at a time from a randomized li
 - Question displayed below the image and above the answer buttons.
 - For multiple answers 4 answer buttons will be displayed below the question, only 2 will show if it is a true or false statement.
 <br>
+
 ![Multi-Answer question](documentation/images/multi-answer.png)
 ![True or false question](documentation/images/true-false.png)
 
@@ -44,6 +47,7 @@ This website allow you to answer up to 7 question at a time from a randomized li
 - Your score is displayed with a paragraph below it commenting depending on your results.
 - Below this a clickable text element with instruction to return to main menu.
 <br>
+
 ![Score section](documentation/images/score-section.png)
 
 
@@ -78,6 +82,7 @@ __Validator__
 
 ![Lighthouse Desktop](documentation/images/light-house-desktop.PNG)
 - Lighthouse results on desktop devices <br>
+
 ![Lighthouse mobile](documentation/images/light-house-mobile.PNG)
 - LightHouse on Mobile devices recieves a lower score on prefomance due to Main menu image only take up half the page.
 - In future development, the difficulty selectors will be displayed below the Hero image for easier access and better visuals.
@@ -88,9 +93,11 @@ __Manual Testing__
 - You can easily start over from the main menu if you feel the difficulty is too high and all counters reset on restart.
 - Quiz on Deskopts:
 <br>
+
 ![Desktop quiz layout](documentation/images/quiz-on-desktop.png)
 - Quiz on mobile devices: 
 <br>
+
 ![Mobile device quiz layout](documentation/images/quiz-on-mobile.png)
 
 
