@@ -43,7 +43,7 @@ let selectedQuestions, questionIndex, currentQuestion, timeout, buttonloop, scor
 
 // starts game after difficulty is set/clicked
 // hides hero section and shows quiz section
-// randomize the sorting of selected question difficulty array.
+// randomize the sorting of selected question difficulty array. Taken from Web Dev simplified Youtube.
 // set questionIndex and score to 0 and calls setNextQuestion function
 function startGame(e, difficulty){
     hero.classList.add("hide");
@@ -126,7 +126,7 @@ function showQuestion(currentQuestion){
 // Function checks if click is correct, sets color of button depending if its correct and gives score if applicable before moving on.
 // takes click event and current question object and checks if targeted button is equal to correct_answer
 // if it is, target backgroundcolor will be set to green, otherwise red. Adds to score if correct. 
-// Timeout for 1 seconds before setnextquestion is called again.
+// Timeout for 1 seconds before setnextquestion is called again. Taken from pp2 example 80s-Mixtape
 function selectAnswer (e, currentQuestion){
     if(String(e.target.innerHTML) == currentQuestion.correct_answer){
         document.getElementById(e.target.style.backgroundColor="green");
@@ -171,7 +171,7 @@ function endGame(){
 }
 
 // Function gets called if return to main text is clicked
-// remove hide class of hero/home image and hide rest boxes
+// remove hide class of hero/home image and hide rest boxes. Taken from Web Dev simplified Youtube.
 function returnToMain(){
     finalScoreSection.classList.add("hide");
     hero.classList.remove("hide");
